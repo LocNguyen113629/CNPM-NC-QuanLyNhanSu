@@ -1,0 +1,118 @@
+﻿@model HR_Manager.Models.PhieuCongTac
+
+@{
+    ViewBag.Title = "AddEmployeeBusiness";
+    Layout = "~/Views/HR/Layout_HR/Layout_HR.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- (Page content) -->
+    <section class="content">
+        <!-- Horizontal Form -->
+        <div class="box box-info">
+            <!-- form start -->
+            @using (Html.BeginForm())
+            {
+                <form class="form-horizontal">
+                    <!-- /.box-body -->
+                    <div class="box-body">
+                        <div class="col-md-6 image-add-profile">
+                            <div class="form-group">
+                                <div class="file-upload">
+                                    <div class="image-upload-wrap">
+                                        <input name="ImageUpload" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                        <div class="image-icon-profile">
+                                            <img src="@ViewBag.hinhNV" style="height:360px;width:340px" />
+                                        </div>
+                                    </div>
+                                    <div class="file-upload-content">
+                                        <img class="file-upload-image" src="#" alt="your image" />
+                                        <div class="image-title-wrap">
+                                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-information-employee">
+                            <!-- /.box-header -->
+                            <div class="header-add-employee">
+                                <p>Add New Employee Business</p>
+                            </div>
+                            <div class="row" style="margin-top:70px">
+                                <!--Mã Nhân Viên-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="HoTen" class="lable-add-employee">Mã Nhân Viên</label>
+                                        <div class="">
+                                            <input class="form-control" id="manv" type="text" value="@ViewBag.MaNVCu" />
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <!--Nơi công tác-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="NoiCT" class="lable-add-employee">Nơi Công Tác</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.NoiCT, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <!--Từ Ngày-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="TuNgay" class="lable-add-employee" style="margin-top:20px">Từ Ngày</label>
+                                        <div class="">
+                                            @Html.TextBox("TuNgay", null, new
+                                            {
+                                                @class = "form-control",
+                                                @id = "TuNgay",
+                                                type = "date",
+                                                placeholder = "mm/dd/yyyy",
+                                            })
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <!--Đến Ngày-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="DenNgay" class="lable-add-employee" style="margin-top:20px">Đến Ngày</label>
+                                        <div class="">
+                                            @Html.TextBox("DenNgay", null, new
+                                            {
+                                                @class = "form-control",
+                                                @id = "DenNgay",
+                                                type = "date",
+                                                placeholder = "mm/dd/yyyy",
+                                            })
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <!--Nội dung công tác-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="NoiDungCongTac" class="lable-add-employee" style="margin-top:20px">Nội Dung</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.NoiDungCongTac, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.box-footer -->
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" style="float:right" />
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            }
+        </div>
+    </section>
+</div>

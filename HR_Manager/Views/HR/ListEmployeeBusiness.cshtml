@@ -1,0 +1,90 @@
+﻿@model IEnumerable<HR_Manager.Models.PhieuCongTac>
+
+@{
+    ViewBag.Title = "ListEmployeeBusiness";
+    Layout = "~/Views/HR/Layout_HR/Layout_HR.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <!-- /.box-header -->
+                    <div class="box-header">
+                        <h3 class="box-title">List Employee Business</h3>
+                    </div>
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>@Html.DisplayName("Full Name")</th>
+                                <th>@Html.DisplayName("Department")</th>
+                                <th>@Html.DisplayName("Position")</th>
+                                <th>@Html.DisplayName("Business Location")</th>
+                                <th>@Html.DisplayName("Content")</th>
+                                <th>@Html.DisplayName("Start Date")</th>
+                                <th>@Html.DisplayName("End Date")</th>
+                                <th>@Html.DisplayName("Status")</th>
+                                <th></th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NhanVien.HoTen)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NhanVien.PhongBan.TenPB)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NhanVien.ChucVu.TenCV)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NoiCT)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NoiDungCongTac)
+                                    </td>
+                                    <td>
+                                        @Html.ValueFor(modelItem => item.TuNgay, "{0:dd/MM/yyyy}")
+                                    </td>
+                                    <td>
+                                        @Html.ValueFor(modelItem => item.DenNgay, "{0:dd/MM/yyyy}")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TinhTrangCongTac)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("UpdateEmployeeBusiness","HR", new { id = item.SoPhieuCT, idMaNV = item.MaNV })" class="fa fa-pencil-square icon-list" style="margin-right:10px"></a>
+
+                                        <a href="" class="fa fa-trash" data-toggle="modal" data-target="#deletebusinessModal"></a>
+                                        <!-- Xoá phiếu công tác Dialog Modal -->
+                                        <div class="modal fade" id="deletebusinessModal">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title"><strong>Delete Employee Business</strong></h3>
+                                                    </div>
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body">
+                                                        Are you sure want to delete business of this employee ?
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer" style="border:none">
+                                                        <a href="/HR/DeleteEmployeeBusiness/@item.SoPhieuCT" class="btn btn-danger">Accept</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

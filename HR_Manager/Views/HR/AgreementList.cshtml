@@ -1,0 +1,77 @@
+﻿@model IEnumerable<HR_Manager.Models.HopDongLaoDong>
+
+@{
+    ViewBag.Title = "AgreementList";
+    Layout = "~/Views/HR/Layout_HR/Layout_HR.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">List Agreement Employee</h3>
+                        <div class="box-tools" style="width:300px;right:-8px;top:7px">
+                            @using (Html.BeginForm("AgreementList", "HR", FormMethod.Get, new { @id = "agreementList" }))
+                            {
+                                <div>
+                                    @Html.DropDownList("MaLoaiHD", null, "-- All --" , new { @class = "form-control", id = "formDropdown", style = "border-radius:8px" })
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>@Html.DisplayName("Full Name")</th>
+                                <th>@Html.DisplayName("Position")</th>
+                                <th>@Html.DisplayName("Type Of Contract")</th>
+                                <th>@Html.DisplayName("Contract Start Date")</th>
+                                <th>@Html.DisplayName("Contract End Date")</th>
+                                <th></th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NhanVien.HoTen)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NhanVien.ChucVu.TenCV)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LoaiHopDong.TenLoaiHD)
+                                    </td>
+                                    <td>
+                                        @Html.ValueFor(modelItem => item.NgayBDHD, "{0:dd/MM/yyyy}")
+                                    </td>
+                                    <td>
+                                        @Html.ValueFor(modelItem => item.NgayKTHD, "{0:dd/MM/yyyy}")
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("UpdateEmployeeAgreement","HR", new { id = item.MaHD,  idMaNV = item.MaNV})" class="fa fa-pencil-square icon-list"></a>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(".content-wrapper").on("change", "#formDropdown", function () {
+        $('#agreementList')[0].submit();
+    });
+    $(".content-wrapper").on("click", ".Grid tfoot a", function () {
+        $('#agreementList').attr('action', $(this).attr('href')).submit();
+        return false;
+    });
+</script>

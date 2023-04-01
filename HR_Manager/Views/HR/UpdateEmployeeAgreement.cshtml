@@ -1,0 +1,117 @@
+﻿@model HR_Manager.Models.HopDongLaoDong
+
+@{
+    ViewBag.Title = "UpdateEmployeeAgreement";
+    Layout = "~/Views/HR/Layout_HR/Layout_HR.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <!-- (Page content) -->
+    <section class="content">
+        <!-- Horizontal Form -->
+        <div class="box box-info">
+            <!-- form start -->
+            @using (Html.BeginForm())
+            {
+                <form class="form-horizontal">
+                    <!-- /.box-body -->
+                    <div class="box-body">
+                        <div class="col-md-6 image-add-profile">
+                            <div class="form-group">
+                                <div class="file-upload">
+                                    <div class="image-upload-wrap">
+                                        <input name="ImageUpload" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                        <div class="image-icon-profile">
+                                            <img src="@ViewBag.hinhNV" style="height: 360px; width: 430px;" />
+                                        </div>
+                                    </div>
+                                    <div class="file-upload-content">
+                                        <img class="file-upload-image" src="#" alt="your image" />
+                                        <div class="image-title-wrap">
+                                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-information-employee">
+                            <!-- /.box-header -->
+                            <div class="header-add-employee">
+                                <p>Update Employee Agreement</p>
+                            </div>
+                            <div class="row" style="margin-top:70px">
+                                <!--Mã Nhân Viên-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="HoTen" class="lable-add-employee">Mã Nhân Viên</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.MaNV, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <!--Loại hợp đồng-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="ChucVu" class="lable-add-employee">Loại Hợp Đồng</label>
+                                        <div class="">
+                                            @Html.DropDownList("MaLoaiHD", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <!--Ngày bắt đầu hợp đồng-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="NgayBDHD" class="lable-add-employee" style="margin-top:20px">Ngày Bắt Đầu Hợp Đồng </label>
+                                        <div class="">
+                                            @*@Html.TextBox("NgayBDHD", null, new
+                                       {
+                                           @class = "form-control",
+                                           @id = "startDate",
+                                           type = "date",
+                                           placeholder = Model.NgayKTHD,
+                                           min = Model.NgayBDHD,
+
+                                       })*@
+                                            @Html.TextBoxFor(m => m.NgayBDHD, "{0:dd/MM/yyyy}", new {@class="form-control", @type="date"})
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <!--Ngày kết thúc hợp đồng-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="NgayKTHD" class="lable-add-employee" style="margin-top:20px">Ngày Kết Thúc Hợp Đồng</label>
+                                        <div class="">
+                                            @Html.TextBox("NgayKTHD", null, new
+                                       {
+                                           @class = "form-control",
+                                           @id = "NgayKTHD",
+                                           type = "date",
+                                           placeholder = Model.NgayKTHD,
+                                       })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                @Html.HiddenFor(model => model.MaHD)
+
+                            </div>
+                        </div>
+                        <!-- /.box-footer -->
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Update" class="btn btn-default" style="float:right" />
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            }
+        </div>
+    </section>
+</div>
+

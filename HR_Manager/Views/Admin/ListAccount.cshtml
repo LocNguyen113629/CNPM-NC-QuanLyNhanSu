@@ -1,0 +1,59 @@
+﻿@model IEnumerable<HR_Manager.Models.TaiKhoan>
+
+@{
+    ViewBag.Title = "ListAccount";
+    Layout = "~/Views/Admin/Layout_Admin/Layout_Admin.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <p>
+            @Html.ActionLink("Add New", "AddNewAccount")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Mã Nhân Viên")
+                </th>
+                <th>
+                    @Html.DisplayName("Họ Tên")
+                </th>
+                <th>
+                    @Html.DisplayName("Tên Chức Vụ")
+                </th>
+                <th>
+                    @Html.DisplayName("User Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Password")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NhanVien.MaNV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NhanVien.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NhanVien.ChucVu.TenCV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "DeleteAccount", new { id = item.MaTK })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </section>
+</div>

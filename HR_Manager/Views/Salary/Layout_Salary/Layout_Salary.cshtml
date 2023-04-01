@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Possession</title>
+    @Styles.Render("~/Content/css")
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+
+    <div class="wrapper">
+        <!-- [BEGIN HEADER] -->
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="@Url.Action("Dashboardv1", "Dashboard")" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>P</b>ON</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Possession</b></span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/Content/adminlte/img/Salary.png" class="user-image" alt="User Image">
+                                <span class="hidden-xs"><b>Salary Manager</b></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="~/Content/adminlte/img/Salary.png" class="img-circle" alt="User Image">
+                                    <p>
+                                        Nguyen Thi B - Salary Manager
+                                        <small>Member since Mar. 2023</small>
+                                    </p>
+                                </li>
+
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="~/Login/Logout" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- [END HEADER] -->
+        <!-- [BEGIN SIDEBAR]-->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="~/Content/adminlte/img/Salary.png" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>Nguyen Thi B</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">MAIN NAVIGATION</li>
+
+                    <!-- CV Employee -->
+                    <li class="@Html.IsSelected(controller: "CV Employee") treeview">
+                        <a href="@Url.Action("CV Employee", "Dashboard")">
+                            <i class="fa fa-dashboard"></i> <span>Payroll</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="@Html.IsSelected(action: "Dashboardv1")"><a href="@Url.Action("Dashboardv1", "Dashboard")"><i class="fa fa-circle-o"></i> Add new CV</a></li>
+                            <li class="@Html.IsSelected(action: "Dashboardv2")"><a href="@Url.Action("Dashboardv2", "Dashboard")"><i class="fa fa-circle-o"></i> List CV</a></li>
+                            <li class="@Html.IsSelected(action: "Dashboardv2")"><a href="@Url.Action("Dashboardv2", "Dashboard")"><i class="fa fa-circle-o"></i> Update CV</a></li>
+                        </ul>
+                    </li>
+
+                    
+
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- [END SIDEBAR]-->
+
+        @RenderBody()
+
+        <!-- [BEGIN FOOTER]-->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Developed by Possession Team</b>
+            </div>
+            <strong>Copyright &copy; 2023.</strong> All rights reserved.
+        </footer>
+        <!-- [END FOOTER]-->
+
+        <div class="control-sidebar-bg"></div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/lib")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

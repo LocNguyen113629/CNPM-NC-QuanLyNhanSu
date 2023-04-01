@@ -1,0 +1,261 @@
+﻿@using HR_Manager.Models
+
+@{
+    var user = (TaiKhoan)HttpContext.Current.Session["user"];
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Possession</title>
+    @Styles.Render("~/Content/css")
+
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/previewImage.js"></script>
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="~/Scripts/uploadpic.js"></script>
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+
+    <div class="wrapper">
+        <!-- [BEGIN HEADER] -->
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="@Url.Action("HR_HomePage", "HR")" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>P</b>ON</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Possession</b></span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/Images/pexels-spencer-selover-775358.jpg" class="user-image" alt="User Image">
+                                <span class="hidden-xs"><b>@*@user.NhanVien.ChucVu.TenCV*@ Quản Lý Nhân Sự</b></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <!--Hình ảnh đang set mặc định, nếu muốn chạy bằng dữ liệu dưới database, 
+                                        thay đường link ảnh dưới bằng :
+                                        @*@user.NhanVien.AnhDaiDienNV*@-->
+                                    <img src="~/Images/pexels-spencer-selover-775358.jpg" class="img-circle" alt="User Image">
+                                    <p>
+                                        @*@user.NhanVien.HoTen*@ Tran Van C
+                                        <small>Member since Mar. 2023</small>
+                                    </p>
+                                </li>
+
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="~/Login/Logout" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- [END HEADER] -->
+
+        <!-- [BEGIN SIDEBAR]-->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <!--Hình ảnh đang set mặc định, nếu muốn chạy bằng dữ liệu dưới database,
+                           thay đường link ảnh dưới bằng :
+                           @*@user.NhanVien.AnhDaiDienNV*@-->
+                        <img src="~/Images/pexels-spencer-selover-775358.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>@*@user.NhanVien.HoTen*@ Tran Van C</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">MAIN NAVIGATION</li>
+
+                    <!-- Employee Management -->
+                    <li class="@Html.IsSelected(controller: "Home") treeview">
+                        <a href="@Url.Action("HR_HomePage", "HR")">
+                            <i class="fa fa-users"></i> <span>Employee Management</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="@Html.IsSelected(action: "AddNewEmployee")"><a href="@Url.Action("AddNewEmployee", "HR")"><i class="fa fa-circle-o"></i> Add new employee</a></li>
+                            <li class="@Html.IsSelected(action: "ListEmployee")"><a href="@Url.Action("ListEmployee", "HR")"><i class="fa fa-circle-o"></i> List employee</a></li>
+                        </ul>
+                    </li>
+
+                    <!--Departments-->
+                    <li class="@Html.IsSelected(controller: "Home") treeview">
+                        <a href="@Url.Action("HR_HomePage", "HR")">
+                            <i class="fa fa-building"></i> <span>Departments</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="@Html.IsSelected(action: "ListDepartment_Employee")"><a href="@Url.Action("ListDepartment_Employee", "HR")"><i class="fa fa-circle-o"></i> List Department</a></li>
+                        </ul>
+
+                    </li>
+
+                    <!--Business-->
+                    <li class="@Html.IsSelected(controller: "Home") treeview">
+                        <a href="@Url.Action("HR_HomePage", "HR")">
+                            <i class="fa fa-file-text"></i> <span>Agreement</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="@Html.IsSelected(action: "AgreementList")"><a href="@Url.Action("AgreementList", "HR")"><i class="fa fa-circle-o"></i>List Agreement</a></li>
+                        </ul>
+
+                    </li>
+
+                    <!--Agreement-->
+                    <li class="@Html.IsSelected(controller: "Home") treeview">
+                        <a href="@Url.Action("HR_HomePage", "HR")">
+                            <i class="fa fa-briefcase"></i> <span>Business</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="@Html.IsSelected(action: "ListEmployeeBusiness")"><a href="@Url.Action("ListEmployeeBusiness", "HR")"><i class="fa fa-circle-o"></i> List Employee Business</a></li>
+                        </ul>
+
+                    </li>
+
+                    <!--Day - off-->
+                    <li class="@Html.IsSelected(controller: "Home") treeview">
+                        <a href="@Url.Action("HR_HomePage", "HR")">
+                            <i class="fa fa-hourglass-half"></i> <span>Day - off & Absence</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="@Html.IsSelected(action: "ListApplicationForLeave")"><a href="@Url.Action("ListApplicationForLeave", "HR")"><i class="fa fa-circle-o"></i> List Application For Leave</a></li>
+                        </ul>
+
+                    </li>
+
+                    <!-- Rewards & Discipclines-->
+                    <li class="@Html.IsSelected(controller: "Home") treeview">
+                        <a href="@Url.Action("HR_HomePage", "HR")">
+                            <i class="fa fa-certificate"></i> <span>Rewards & Discipclines</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="@Html.IsSelected(action: "AddRewardDiscipline")"><a href="@Url.Action("AddRewardDiscipline", "HR")"><i class="fa fa-circle-o"></i> Add Rewards & Disciplines</a></li>
+                            <li class="@Html.IsSelected(action: "ListRewardDiscipline")"><a href="@Url.Action("ListRewardDiscipline", "HR")"><i class="fa fa-circle-o"></i> List Rewards & Disciplines</a></li>
+                        </ul>
+                    </li>
+
+                    <!--Working Day-->
+                    <li class="@Html.IsSelected(controller: "CV Employee") treeview">
+                        <a href="@Url.Action("CV Employee", "Dashboard")">
+                            <i class="fa fa-dashboard"></i> <span>Working Day</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="@Html.IsSelected(action: "Dashboardv1")"><a href="@Url.Action("Dashboardv1", "Dashboard")"><i class="fa fa-circle-o"></i> Add new CV</a></li>
+                            <li class="@Html.IsSelected(action: "Dashboardv2")"><a href="@Url.Action("Dashboardv2", "Dashboard")"><i class="fa fa-circle-o"></i> List CV</a></li>
+                            <li class="@Html.IsSelected(action: "Dashboardv2")"><a href="@Url.Action("Dashboardv2", "Dashboard")"><i class="fa fa-circle-o"></i> Update CV</a></li>
+                        </ul>
+
+                    </li>
+
+                    <!--Timekeeping-->
+                    <li class="@Html.IsSelected(controller: "CV Employee") treeview">
+                        <a href="@Url.Action("CV Employee", "Dashboard")">
+                            <i class="fa fa-dashboard"></i> <span>Timekeeping</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="@Html.IsSelected(action: "Dashboardv1")"><a href="@Url.Action("Dashboardv1", "Dashboard")"><i class="fa fa-circle-o"></i> Add new CV</a></li>
+                            <li class="@Html.IsSelected(action: "Dashboardv2")"><a href="@Url.Action("Dashboardv2", "Dashboard")"><i class="fa fa-circle-o"></i> List CV</a></li>
+                            <li class="@Html.IsSelected(action: "Dashboardv2")"><a href="@Url.Action("Dashboardv2", "Dashboard")"><i class="fa fa-circle-o"></i> Update CV</a></li>
+                        </ul>
+
+                    </li>
+
+   
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- [END SIDEBAR]-->
+
+        @RenderBody()
+
+        <!-- [BEGIN FOOTER]-->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Developed by Possession Team</b>
+            </div>
+            <strong>Copyright &copy; 2023.</strong> All rights reserved.
+        </footer>
+        <!-- [END FOOTER]-->
+        <div class="control-sidebar-bg"></div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/lib")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+﻿@model IEnumerable<HR_Manager.Models.NhanVien>
+
+@{
+    ViewBag.Title = "ListEmployee";
+    Layout = "~/Views/HR/Layout_HR/Layout_HR.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <p>
+            @Html.ActionLink("Add New", "AddNewEmployee")
+        </p>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">List Employee</h3>
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>@Html.DisplayName("Full Name")</th>
+                                <th>@Html.DisplayName("Position")</th>
+                                <th>@Html.DisplayName("Department")</th>
+                                <th>@Html.DisplayName("Phone Number")</th>
+                                <th>@Html.DisplayName("Literacy")</th>
+                                <th>@Html.DisplayName("On Leave Remains")</th>
+                                <th></th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.HoTen)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ChucVu.TenCV)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PhongBan.TenPB)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DienThoai)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TrinhDoHocVan)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SoNgayNPConLai)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("DetailsEmployee","HR", new { id = item.MaNV })" class="fa fa-info-circle icon-list"></a>
+                                        <a href="" class="fa fa-file-text" data-toggle="modal" data-target="#agreementModal" style="margin-right:10px"></a>
+                                        <!-- Thêm hợp đồng nhân viên Dialog Modal -->
+                                        <div class="modal fade" id="agreementModal">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title"><strong>Agreement Employee</strong></h3>
+                                                    </div>
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body">
+                                                        Do you want to add agreement for this employee ?
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer" style="border:none">
+                                                        <a href="/HR/AddEmployeeAgreement/@item.MaNV" class="btn btn-danger">Accept</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <a href="" class="fa fa-briefcase" data-toggle="modal" data-target="#businessModal"></a>
+                                        <!-- Thêm phiếu công tác nhân viên Dialog Modal -->
+                                        <div class="modal fade" id="businessModal">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title"><strong>Business Employee</strong></h3>
+                                                    </div>
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body">
+                                                        Do you want to add business for this employee ?
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer" style="border:none">
+                                                        <a href="@Url.Action("AddEmployeeBusiness","HR", new { id = item.MaNV })" class="btn btn-danger">Accept</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section>
+</div>
+

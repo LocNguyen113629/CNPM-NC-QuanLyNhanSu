@@ -1,0 +1,135 @@
+﻿@model HR_Manager.Models.PhieuDieuChuyen
+
+@{
+    ViewBag.Title = "AddTransferingDepartment";
+    Layout = "~/Views/HR/Layout_HR/Layout_HR.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <!-- (Page content) -->
+    <section class="content">
+        <!-- Horizontal Form -->
+        <div class="box box-info">
+            <!-- form start -->
+            @using (Html.BeginForm())
+            {
+                <div class="form-horizontal">
+                    <!-- /.box-body -->
+                    <div class="box-body">
+                        <div class="col-md-6 image-add-profile">
+                            <div class="form-group">
+                                <div class="file-upload">
+                                    <div class="image-upload-wrap">
+                                        <input name="ImageUpload" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                        <div class="image-icon-profile">
+                                            <img src="@ViewBag.hinhNV" style="height: 360px; width: 430px;" />
+                                        </div>
+                                    </div>
+                                    <div class="file-upload-content">
+                                        <img class="file-upload-image" src="#" alt="your image" />
+                                        <div class="image-title-wrap">
+                                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-information-employee">
+                            <!-- /.box-header -->
+                            <div class="header-add-employee">
+                                <p>Transfer Department</p>
+                            </div>
+                            <div class="row" style="margin-top:70px">
+                                <!--Mã Nhân Viên-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="manv" class="lable-add-employee">Mã Nhân Viên</label>
+                                        <div class="">
+                                            <input class="form-control" id="manv" type="text" value="@ViewBag.MaNVDC">
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <!--Tên phòng ban đang công tác-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="phongbancu" class="lable-add-employee">Tên Phòng Ban Đang Công Tác</label>
+                                        <div class="">
+                                            <input class="form-control" id="phongbancu" type="text" value="@ViewBag.phongbancu">
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <!--Phòng ban chuyển đến-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="phongbanmoi" class="lable-add-employee" style="margin-top:20px">Phòng Ban Chuyển Đến</label>
+                                        <div class="">
+                                            @Html.DropDownList("MaPB", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <!--Ngày chuyển-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="ngaychuyen" class="lable-add-employee" style="margin-top:20px">Ngày Chuyển</label>
+                                        <div class="">
+                                            @Html.TextBox("NgayChuyen", null, new
+                                       {
+                                           @class = "form-control",
+                                           @id = "ngaychuyen",
+                                           type = "date",
+                                           placeholder = "mm/dd/yyyy",
+                                       })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <!--Nội dung-->
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label style="margin-top:20px" for="noidung" class="lable-add-employee">Nội dung</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <!--Hidden MaNV-->
+                                <div class="">
+                                    <fieldset>
+                                        <div class="">
+                                            @Html.HiddenFor(model => model.MaNV, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <!--Hidden SoPhieuDC-->
+                                <div class="">
+                                    <fieldset>
+                                        <div class="">
+                                            @Html.HiddenFor(model => model.SoPhieuDC, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </section>
+</div>

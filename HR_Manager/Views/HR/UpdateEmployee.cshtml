@@ -1,0 +1,186 @@
+﻿@model HR_Manager.Models.NhanVien
+
+@{
+    ViewBag.Title = "UpdateEmployee";
+    Layout = "~/Views/HR/Layout_HR/Layout_HR.cshtml";
+}
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+<div class="content-wrapper">
+    <!-- (Page content) -->
+    <section class="content">
+        <!-- Horizontal Form -->
+        <div class="box box-info">
+            @using (Html.BeginForm("UpdateEmployee", "HR", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <form class="form-horizontal">
+                    <div class="box-body">
+                        <div class="col-md-6 image-add-profile">
+                            <div class="form-group">
+                                <div class="file-upload">
+                                    <div class="image-upload-wrap">
+                                        <input name="ImageUpload" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                        <div class="image-icon-profile">
+                                            <img class="image-information-detail" style="height:400px;width:400px" src="@Model.AnhDaiDienNV" alt="Ảnh Đại Diện Nhân Viên" />
+                                        </div>
+                                    </div>
+                                    <div class="file-upload-content">
+                                        <img class="file-upload-image" src="#" alt="your image" />
+                                        <div class="image-title-wrap">
+                                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-information-employee">
+                            <!-- /.box-header -->
+                            <div class="header-add-employee">
+                                <p>Update Employee</p>
+                            </div>
+                            <div class="row">
+                                <div class="">
+                                    <fieldset>
+                                        <div class="">
+                                            @Html.HiddenFor(model => model.MaNV, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="HoTen" class="lable-add-employee">Họ Tên</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="ChucVu" class="lable-add-employee">Chức Vụ</label>
+                                        <div class="">
+                                            @Html.DropDownList("MaCV", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="PhongBan" class="lable-add-employee">Phòng Ban</label>
+                                        <div class="">
+                                            @Html.DropDownList("MaPB", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="CCCD" class="lable-add-employee">CCCD</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.CCCD, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="NgaySinh" class="lable-add-employee">Ngày Sinh</label>
+                                        <div class="">
+                                            @Html.TextBoxFor(model => model.NgaySinh, null, new
+                                          {
+                                              @class = "form-control",
+                                              @id = "NgaySinh",
+                                              type = "date",
+                                              placeholder = "mm/dd/yyyy",
+
+                                          })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="DanToc" class="lable-add-employee">Dân Tộc</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.DanToc, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="TonGiao" class="lable-add-employee">Tôn Giáo</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.TonGiao, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="QueQuan" class="lable-add-employee">Quê Quán</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.QueQuan, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="NoiOHienTai" class="lable-add-employee">Nơi ở hiện tại</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.QueQuan, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="DienThoai" class="lable-add-employee">Số Điện Thoại</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="Email" class="lable-add-employee">Email</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="SoNgayNPConLai" class="lable-add-employee">Số Ngày Nghỉ Phép còn lại</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.SoNgayNPConLai, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-info pull-right">Update</button>
+                    </div>
+                    <!-- /.box-footer -->
+
+                </form>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "ListEmployee")
+            </div>
+        </div>
+    </section>
+</div>

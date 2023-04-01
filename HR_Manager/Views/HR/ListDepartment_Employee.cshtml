@@ -1,0 +1,95 @@
+﻿@model IEnumerable<HR_Manager.Models.NhanVien>
+
+@{
+    ViewBag.Title = "ListDepartment_Employee";
+    Layout = "~/Views/HR/Layout_HR/Layout_HR.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">List Employee Department</h3>
+                        <div class="box-tools" style="width:300px;right:-8px;top:7px">
+                            @using (Html.BeginForm("ListDepartment_Employee", "HR", FormMethod.Get, new { @id = "listDepartment" }))
+                            {
+                                <div>
+                                    @Html.DropDownList("MaPB", null, "-- All --" , new { @class = "form-control", id = "formDropdown", style = "border-radius:8px" })
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>@Html.DisplayName("Full Name")</th>
+                                <th>@Html.DisplayName("Department")</th>
+                                <th>@Html.DisplayName("Position")</th>
+                                <th>@Html.DisplayName("Email")</th>
+                                <th>@Html.DisplayName("Phone Number")</th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.HoTen)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PhongBan.TenPB)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ChucVu.TenCV)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DienThoai)
+                                    </td>
+                                    <td>
+                                        <a href="" class="fa fa-exchange" data-toggle="modal" data-target="#transferModal"></a>
+                                        <!-- Thuyên chuyển phòng ban Dialog Modal -->
+                                        <div class="modal fade" id="transferModal">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title"><strong>Transfering Employee</strong></h3>
+                                                    </div>
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body">
+                                                        Do you want to transfer this employee to another department ?
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer" style="border:none">
+                                                        <a href="@Url.Action("AddTransferingDepartment", "HR", new { id = item.MaNV })" class="btn btn-danger">Accept</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(".content-wrapper").on("change", "#formDropdown", function () {
+        $('#listDepartment')[0].submit();
+    });
+    $(".content-wrapper").on("click", ".Grid tfoot a", function () {
+        $('#listDepartment').attr('action', $(this).attr('href')).submit();
+        return false;
+    });
+</script>

@@ -1,0 +1,118 @@
+﻿@model HR_Manager.Models.PhieuCongTac
+
+@{
+    ViewBag.Title = "UpdateEmployeeBusiness";
+    Layout = "~/Views/HR/Layout_HR/Layout_HR.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- (Page content) -->
+    <section class="content">
+        <!-- Horizontal Form -->
+        <div class="box box-info">
+            @using (Html.BeginForm())
+            {
+                <form class="form-horizontal">
+                    <div class="box-body">
+                        <div class="col-md-6 image-add-profile">
+                            <div class="form-group">
+                                <div class="file-upload">
+                                    <div class="image-upload-wrap">
+                                        <input name="ImageUpload" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                        <div class="image-icon-profile">
+                                            <img class="image-information-detail" style="height:400px;width:400px" src="@ViewBag.hinhNV" alt="Ảnh Đại Diện Nhân Viên" />
+                                        </div>
+                                    </div>
+                                    <div class="file-upload-content">
+                                        <img class="file-upload-image" src="#" alt="your image" />
+                                        <div class="image-title-wrap">
+                                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 form-information-employee">
+                            <!-- /.box-header -->
+                            <div class="header-add-employee">
+                                <p>Update Employee Business</p>
+                            </div>
+                            <div class="row">
+                                <div class="">
+                                    <div class="">
+                                        @Html.HiddenFor(model => model.SoPhieuCT, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="MaNV" class="lable-add-employee">Mã Nhân Viên</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.NhanVien.MaNV, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="NoiCT" class="lable-add-employee">Nơi Công Tác</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.NoiCT, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="NoiDungCongTac" class="lable-add-employee">Nội Dung Công Tác</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.NoiDungCongTac, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="TuNgay" class="lable-add-employee">Từ Ngày</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.TuNgay, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="DenNgay" class="lable-add-employee">Đến Ngày</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.DenNgay, new { htmlAttributes = new { @class = "form-control"} })
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <label for="TinhTrangCongTac" class="lable-add-employee">Tình Trạng Công Tác</label>
+                                        <div class="">
+                                            @Html.EditorFor(model => model.TinhTrangCongTac, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-info pull-right">Update</button>
+                    </div>
+                    <!-- /.box-footer -->
+
+                </form>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "ListEmployeeBusiness")
+            </div>
+
+        </div>
+    </section>
+</div>

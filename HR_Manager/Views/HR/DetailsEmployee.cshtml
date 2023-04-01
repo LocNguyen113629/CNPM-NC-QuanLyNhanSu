@@ -1,0 +1,191 @@
+﻿@model HR_Manager.Models.NhanVien
+
+@{
+    ViewBag.Title = "DetailsEmployee";
+    Layout = "~/Views/HR/Layout_HR/Layout_HR.cshtml";
+}
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title" style="margin-left:300px;">
+                            Personal Information
+                        </h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-6 image-detail-employee">
+                            <img class="image-information-detail" style="height:360px;width:430px;margin-bottom:10px" src="@Model.AnhDaiDienNV" alt="Ảnh Đại Diện Nhân Viên" />
+                        </div>
+
+                        <div class="col-md-6 detail-information-employee">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <span>
+                                            Full Name
+                                        </span>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <p>
+                                            @Html.DisplayFor(model => model.HoTen)
+                                        </p>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <span>
+                                            Literacy
+                                        </span>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <p>
+                                            @Html.DisplayFor(model => model.TrinhDoHocVan)
+                                        </p>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <span>
+                                            Position
+                                        </span>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <p>
+                                            @Html.DisplayFor(model => model.ChucVu.TenCV)
+                                        </p>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <span>
+                                            Department
+                                        </span>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <p>
+                                            @Html.DisplayFor(model => model.PhongBan.TenPB)
+                                        </p>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <span>
+                                            Hometown
+                                        </span>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <p>
+                                            @Html.DisplayFor(model => model.QueQuan)
+                                        </p>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <span>
+                                            Residence
+                                        </span>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <p>
+                                            @Html.DisplayFor(model => model.NoiOHienTai)
+                                        </p>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <span>
+                                            Phone Number
+                                        </span>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <p>
+                                            @Html.DisplayFor(model => model.DienThoai)
+                                        </p>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <span>
+                                            Email
+                                        </span>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <p>
+                                            @Html.DisplayFor(model => model.Email)
+                                        </p>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <span>
+                                            On Leave Remains
+                                        </span>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <span>
+                                            @Html.DisplayFor(model => model.SoNgayNPConLai)
+                                        </span>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <a href="" class="fa fa-trash-o" data-toggle="modal" data-target="#deleteModal" style="font-size:22px;float:left"></a>
+                                        <!-- Xoá nhân viên Dialog Modal -->
+                                        <div class="modal fade" id="deleteModal">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title"><strong>Delete Employee</strong></h3>
+                                                    </div>
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body">
+                                                        Are you sure want to delete this employee ?
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer" style="border:none">
+                                                        <a href="/HR/DeleteEmployee/@Model.MaNV" class="btn btn-danger">Accept</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <a href="@Url.Action("UpdateEmployee","HR", new { id = Model.MaNV })" class="fa fa-pencil-square-o" style="font-size: 22px; color: coral; float: right"></a>
+
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+

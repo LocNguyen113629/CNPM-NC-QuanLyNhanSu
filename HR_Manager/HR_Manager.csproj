@@ -281,6 +281,7 @@
     <Content Include="Images\Logo\Logo_HR.ico" />
     <Content Include="Images\System\add-profile.png" />
     <Content Include="Images\default_picture.png" />
+    <Content Include="Images\System\success.gif" />
     <Content Include="images_login\bg-01.jpg" />
     <Content Include="images_login\icons\favicon.ico" />
     <Content Include="Models\Model1.Context.tt">

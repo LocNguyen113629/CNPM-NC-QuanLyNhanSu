@@ -67,16 +67,7 @@
                                     <fieldset>
                                         <label for="NgayBDHD" class="lable-add-employee" style="margin-top:20px">Ngày Bắt Đầu Hợp Đồng </label>
                                         <div class="">
-                                            @*@Html.TextBox("NgayBDHD", null, new
-                                       {
-                                           @class = "form-control",
-                                           @id = "startDate",
-                                           type = "date",
-                                           placeholder = Model.NgayKTHD,
-                                           min = Model.NgayBDHD,
-
-                                       })*@
-                                            @Html.TextBoxFor(m => m.NgayBDHD, "{0:dd/MM/yyyy}", new {@class="form-control", @type="date"})
+                                            @Html.TextBoxFor(m => m.NgayBDHD, "{0:yyyy-MM-dd}", new {@class="form-control", type="date"})
                                         </div>
                                     </fieldset>
                                 </div>
@@ -86,13 +77,7 @@
                                     <fieldset>
                                         <label for="NgayKTHD" class="lable-add-employee" style="margin-top:20px">Ngày Kết Thúc Hợp Đồng</label>
                                         <div class="">
-                                            @Html.TextBox("NgayKTHD", null, new
-                                       {
-                                           @class = "form-control",
-                                           @id = "NgayKTHD",
-                                           type = "date",
-                                           placeholder = Model.NgayKTHD,
-                                       })
+                                            @Html.TextBoxFor(m => m.NgayKTHD, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
                                         </div>
                                     </fieldset>
                                 </div>

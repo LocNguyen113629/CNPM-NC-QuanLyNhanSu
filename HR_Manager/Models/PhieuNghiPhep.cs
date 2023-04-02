@@ -24,9 +24,8 @@ namespace HR_Manager.Models
         public string AnhNghiPhepNV { get; set; }
         public string NoiDungNP { get; set; }
         public string TrangThai { get; set; }
-
-        public HttpPostedFileBase ImageUploadPNP { get; set; }
     
+        public HttpPostedFileBase ImageUploadPNP { get; set; }
         public virtual LoaiNghiPhep LoaiNghiPhep { get; set; }
         public virtual NhanVien NhanVien { get; set; }
     }

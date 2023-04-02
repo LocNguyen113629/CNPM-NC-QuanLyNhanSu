@@ -76,13 +76,7 @@
                                     <fieldset>
                                         <label for="ThoiGian" class="lable-add-employee">Time</label>
                                         <div class="">
-                                            @Html.TextBox("ThoiGian", null, new
-                                             {
-                                                 @class = "form-control",
-                                                 @id = "ThoiGian",
-                                                 type = "date",
-                                                 placeholder = "mm/dd/yyyy",
-                                             })
+                                            @Html.TextBoxFor(model => model.ThoiGian, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
                                         </div>
                                     </fieldset>
                                 </div>

@@ -3,7 +3,7 @@
 
 @{
     Layout = null;
-    var user = (TaiKhoan)HttpContext.Current.Session["user"];
+    //var user = (TaiKhoan)HttpContext.Current.Session["user"];
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -33,14 +33,17 @@
                 <div class="container">
                     <div class="image">
                         <a href="#">
-                            <img src="@user.NhanVien.AnhDaiDienNV" />
+                            @*@user.NhanVien.AnhDaiDienNV*@
+                            <img src="~/Images/lotus.jpg" />
                         </a>
                     </div>
                     <div class="author-content">
                         @{
-                            <h4>@user.NhanVien.HoTen</h4>
+                            @*@user.NhanVien.HoTen*@
+                            <h4>Hoang Quan</h4>
                         }
-                        <span>@user.NhanVien.ChucVu.TenCV</span>
+                        @*@user.NhanVien.ChucVu.TenCV*@
+                        <span>Employee</span>
                     </div>
                     <nav class="main-nav" role="navigation">
                         <ul class="main-menu">
@@ -98,15 +101,61 @@
                                     To save your rights, please "Check in" when start to work, and "Check out" when your day finished.
                                 </p>
 
-                                <button class="button-check-in">
-                                    Check In
-                                    <i class="fa fa-sign-in" style="font-size:20px; margin-left:5px"></i>
-                                </button>
+                                <form id="contact" action="~/Staff/ST_Homepage" method="post">
+                                    <button class="button-check-in" type="submit" data-toggle="modal" data-target="#checkinModal">
+                                        Check In
+                                        <i class="fa fa-sign-in" style="font-size:20px; margin-left:5px"></i>
+                                    </button>
+                                    <!-- Check In Modal -->
+                                    <div class="modal fade" id="checkinModal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <!-- Modal Header -->
+                                                <div class="modal-header-pic">
+                                                    <img class="modal-title-pic" src="~/Images/System/success.gif" />
+                                                </div>
+                                                <!-- Modal body -->
+                                                <!--Trong phần body hiển thị thời gian nhân viên check in, cho một khoảng thời gian delay,
+                                                sau đó dialog tự động biến mất-->
+                                                <div class="modal-body-text">
+                                                    <h2>Check in success</h2>
+                                                </div>
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer" style="border:none">
+                                                    <a href="" class="btn btn-danger">Close</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                <button class="button-check-out">
-                                    Check Out
-                                    <i class="fa fa-sign-out" style="font-size:20px; margin-left:2px"></i>
-                                </button>
+                                    <button class="button-check-out" data-toggle="modal" data-target="#checkoutModal">
+                                        Check Out
+                                        <i class="fa fa-sign-out" style="font-size:20px; margin-left:2px"></i>
+                                    </button>
+                                    <!-- Check Out Modal -->
+                                    <div class="modal fade" id="checkoutModal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <!-- Modal Header -->
+                                                <div class="modal-header-pic">
+                                                    <img class="modal-title-pic" src="~/Images/System/success.gif" />
+                                                </div>
+                                                <!-- Modal body -->
+                                                <!--Trong phần body hiển thị thời gian nhân viên check out, cho dialog một khoảng thời gian delay để hiển thị,
+                                                sau đó tự động Sign out
+                                                *Lưu ý: Khi Sign out phải clear session của user-->
+                                                <div class="modal-body-text">
+                                                    <h3>Check out success</h3>
+                                                </div>
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer" style="border:none">
+                                                    <a href="" class="btn btn-danger">Close</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -207,7 +256,8 @@
                                     </div>
 
                                     <div>
-                                        <input type="hidden" name="MaNV" value="@user.MaNV" />
+                                        @*@user.MaNV*@
+                                        <input type="hidden" name="MaNV" value="NV256" />
                                     </div>
                                     <!--Button Submit-->
                                     <div class="col-md-12">

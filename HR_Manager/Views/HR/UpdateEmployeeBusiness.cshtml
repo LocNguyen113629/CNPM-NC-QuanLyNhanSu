@@ -76,7 +76,7 @@
                                     <fieldset>
                                         <label for="TuNgay" class="lable-add-employee">Từ Ngày</label>
                                         <div class="">
-                                            @Html.EditorFor(model => model.TuNgay, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.TextBoxFor(model => model.TuNgay, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
                                         </div>
                                     </fieldset>
                                 </div>
@@ -85,7 +85,7 @@
                                     <fieldset>
                                         <label for="DenNgay" class="lable-add-employee">Đến Ngày</label>
                                         <div class="">
-                                            @Html.EditorFor(model => model.DenNgay, new { htmlAttributes = new { @class = "form-control"} })
+                                           @Html.TextBoxFor(model => model.DenNgay, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
                                         </div>
                                     </fieldset>
                                 </div>

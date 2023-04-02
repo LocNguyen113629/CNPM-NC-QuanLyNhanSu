@@ -311,6 +311,29 @@ html {
 }
 
 
+/*Modal Dialog*/
+.modal-title-pic {
+    margin-top: 20px;
+    width: 70px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-header-pic {
+    align-items: center;
+}
+
+.modal-content {
+    margin-top: 170px;
+}
+
+.modal-body-text {
+    color: black;
+    text-align: center;
+    margin-top: 20px;
+}
+
 /* Buttons */
 
 button {
